@@ -1,0 +1,55 @@
+class Solution {
+    
+    int dp[1000][2][101];
+    vector<int> p;
+    int n;
+    
+    int f(int ind,int buy,int k){
+        
+        if(ind>=n){
+            return 0;
+        }
+        if(k==0) return 0;
+        int prft=0;
+        
+        if(dp[ind][buy][k]!=-1)
+            return dp[ind][buy][k];
+        
+        
+        if(buy){
+ dp[ind][buy][k]= max(-p[ind]+ f(ind+1,0,k), f(ind+1,1,k)    ); 
+        }else
+        {
+            dp[ind][buy][k]= max(p[ind]+f(ind+1,1,k-1), f(ind+1,0,k));
+        }
+        
+        return dp[ind][buy][k];
+        
+    }
+    
+ 
+    
+public:
+    int maxProfit(int k, vector<int>& prices) {
+        ios_base::sync_with_stdio(0);
+        p= prices;
+        n = p.size();
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<2;j++)
+            {
+                for(int l=0;l<=k;l++)
+                    dp[i][j][l]=-1;
+            }
+        }
+        
+        return f(0,1,k);
+        
+        
+        
+        
+        
+        
+    }
+};
