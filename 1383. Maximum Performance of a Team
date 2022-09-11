@@ -1,0 +1,56 @@
+class Solution {
+    long long min(long long a,long long b){
+   return a>b? b:a;
+    }
+    
+    long long max(long long a,long long b){
+   return a>b?a:b;
+    }
+    
+    
+public:
+    int maxPerformance(int n, vector<int>& sp, vector<int>& eff, int k) {
+        
+      vector<pair<int,int>> v;
+    
+        for(int i=0;i<n;i++){
+            v.push_back({eff[i],sp[i]});
+        }
+        
+     sort(v.begin(),v.end());
+        
+        long long ans=0;
+        long long sum=0;;
+        
+        long long mod=1e9+7;
+        
+        priority_queue<int,vector<int> , greater<int>> pq;
+        
+        for(int i=n-1;i>=0;i--){
+            
+            if(pq.size()<k){
+                sum+= v[i].second;
+              
+                pq.push(v[i].second);
+            }else if(pq.top()<v[i].second){
+                sum-=pq.top();
+            
+                sum+= v[i].second;
+               
+            pq.pop();
+                pq.push(v[i].second);
+            }
+            
+            ans= max(ans, ((long long)v[i].first* sum ));
+         
+            
+        }
+        
+        
+        
+        return (int)(ans%mod);
+        
+        
+        
+    }
+};
