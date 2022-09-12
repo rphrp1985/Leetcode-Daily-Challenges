@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int bagOfTokensScore(vector<int>& tk, int power) {
+        
+        ios_base::sync_with_stdio(0);
+        
+        sort(tk.begin(),tk.end());
+        
+int sc=0;
+        
+        int ans=0;
+        
+        int i=0,j=tk.size()-1;
+        
+       while(i<=j){
+           
+           if(tk[i]>power )
+           {
+               if(sc==0)
+                   break;
+               sc--;
+               power+= tk[j];
+               j--;
+               ans= max(ans,sc);
+               continue;
+               
+           }
+           
+           power-= tk[i];
+           i++;
+           sc++;
+           ans= max(ans,sc);
+           
+           
+           
+       }  
+        
+        
+        
+        return ans;
+        
+        
+        
+        
+    }
+};
