@@ -1,0 +1,42 @@
+class Solution {
+    
+    int ans=0;
+    
+    void dfs(TreeNode* root,vector<int> v){
+        if(root==nullptr) return ;
+        
+        
+        v[root->val]++;
+        
+        if(root->left==nullptr && root->right==nullptr){
+            
+            int e=0,o=0;
+            
+            for(int x: v)
+            {
+                x%2==0? e++: o++;
+            }
+            
+            if(o<=1)
+                ans++;
+            
+            
+            
+        }
+        
+        
+        dfs(root->left,v);
+        dfs(root->right,v);
+        
+        
+    }
+    
+ 
+public:
+    int pseudoPalindromicPaths (TreeNode* root) {
+        ans=0;
+        dfs(root,vector<int> (10,0));
+        return ans;
+        
+    }
+};
