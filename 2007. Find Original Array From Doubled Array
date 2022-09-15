@@ -1,0 +1,71 @@
+class Solution {
+public:
+    vector<int> findOriginalArray(vector<int>& changed) {
+        
+ 
+        map<int,int> mp;
+        
+        for(int x: changed)
+            mp[x]++;
+        vector<int> ans;
+        
+        for(auto it: mp)
+        {
+            if(it.second==0)
+                continue;
+            
+           while(mp[it.first]!=0){
+               mp[it.first]--;
+               
+               if(mp[it.first*2]!=0){
+                   ans.push_back(it.first);
+                   mp[it.first*2]--;
+               }else
+                   return {};
+               
+               
+           }
+            
+            
+        }
+        
+        return ans;
+        
+        
+    }
+};class Solution {
+public:
+    vector<int> findOriginalArray(vector<int>& changed) {
+        
+ 
+        map<int,int> mp;
+        
+        for(int x: changed)
+            mp[x]++;
+        vector<int> ans;
+        
+        for(auto it: mp)
+        {
+            if(it.second==0)
+                continue;
+            
+           while(mp[it.first]!=0){
+               mp[it.first]--;
+               
+               if(mp[it.first*2]!=0){
+                   ans.push_back(it.first);
+                   mp[it.first*2]--;
+               }else
+                   return {};
+               
+               
+           }
+            
+            
+        }
+        
+        return ans;
+        
+        
+    }
+};
