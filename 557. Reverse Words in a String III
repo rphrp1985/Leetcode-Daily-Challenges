@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        
+        stringstream ss(s);
+        string ans="";
+    string word;
+        int i=0;
+    while (ss >> word) {
+        if(i==0)
+        i++;
+        else
+            ans+=" ";
+       reverse(word.begin(),word.end());
+        ans+= word;
+        
+    }
+        
+        
+        return ans;;
+        
+        
+        
+        
+        
+        
+        
+    }
+};
